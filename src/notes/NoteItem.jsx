@@ -1,12 +1,14 @@
 import toast from "react-hot-toast";
 import Textarea from "../components/Textarea";
 import { useNotes } from "../contexts/NotesContext";
+import { usePlayer } from "../contexts/PlayerContext";
 import { formattedDate } from "../helpers/formattedDate";
 import CreateEditBtns from "./CreateEditBtns";
 import DeleteEditBtns from "./DeleteEditBtns";
 import Timestamp from "./Timestamp";
 
 function NoteItem({ note }) {
+  const { player } = usePlayer();
   const { edit, inputText, setInputText } = useNotes();
 
   return (
@@ -22,6 +24,7 @@ function NoteItem({ note }) {
             return toast.error("Maximum character limit: 1000");
           setInputText(e.target.value);
         }}
+        onFocus={() => player.pauseVideo()}
         disabled={!(!note?.id || edit === note?.id)}
         placeholder="Enter your note ..."
       />

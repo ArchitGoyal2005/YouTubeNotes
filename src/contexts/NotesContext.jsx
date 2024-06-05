@@ -8,6 +8,7 @@ const NotesContext = createContext();
 export function NotesProvider({ children }) {
   const { vidId, player } = usePlayer();
   const [inputText, setInputText] = useState("");
+  const [time, setTime] = useState(0);
   const [notes, setNotes] = useState([]);
   const [create, setCreate] = useState(false);
   const [edit, setEdit] = useState(null);
@@ -80,6 +81,8 @@ export function NotesProvider({ children }) {
         notes,
         setCreate,
         setEdit,
+        time,
+        setTime,
       }}
     >
       {children}

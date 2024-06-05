@@ -4,7 +4,7 @@ import { usePlayer } from "../contexts/PlayerContext";
 import Button from "../components/Button";
 
 function AddNewNoteBtn() {
-  const { setCreate } = useNotes();
+  const { create, edit, setCreate } = useNotes();
   const { player } = usePlayer();
 
   return (
@@ -13,6 +13,7 @@ function AddNewNoteBtn() {
         setCreate(true);
         player.pauseVideo();
       }}
+      disabled={create || edit}
     >
       <LuPlusCircle className="text-xl" />
       <span className="text-xs font-semibold text-gray-800  sm:inline lg:text-sm  hidden">
